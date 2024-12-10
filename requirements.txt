@@ -1,0 +1,8 @@
+cv2
+numpy
+pyzbar
+socket
+pickle
+time
+pygame
+sys
