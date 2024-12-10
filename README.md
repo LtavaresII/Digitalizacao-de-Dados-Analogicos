@@ -1,0 +1,1 @@
+# Digitaliza-o-de-Dados-Analogicos
