@@ -1,6 +1,6 @@
 # Digitalização de Dados Analogicos
 
-Este codigo, em python, foi criado com o intuido de Digitalizar um painel de luzes, este painel pertence ao Centro de Lançamento da Barreira do Inferno (CLBI) e atua para chegar se todo está funcional para o lançamento de um fogete
+Este codigo, em python, foi criado com o intuido de Digitalizar um painel de luzes, este painel pertence ao Centro de Lançamento da Barreira do Inferno (CLBI) e atua para checar se todo está funcional para o lançamento de um fogete
 
 Dentro do requirements.txt estão anotadadas as bibliotecas utlizadas no projeto, para instalar use o comando: pip install -r requirements.txt
 
