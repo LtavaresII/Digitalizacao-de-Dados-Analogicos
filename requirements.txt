@@ -1,8 +1,4 @@
-cv2
-numpy
-pyzbar
-socket
-pickle
-time
-pygame
-sys
+opencv-python==4.10.0.82
+numpy==1.26.4
+pyzbar==0.1.9
+pygame==2.5.2

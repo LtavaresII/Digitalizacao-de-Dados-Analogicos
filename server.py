@@ -28,10 +28,14 @@ try:
             [array[0], array[3], array[6], array[9], array[12], array[15], array[18], array[21], array[24], array[27], array[30], array[33]],  # Primeira linha
             [array[1], array[4], array[7], array[10], array[13], array[16], array[19], array[22], array[25], array[28], array[31], array[34]],  # Segunda linha
             [array[2], array[5], array[8], array[11], array[14], array[17], array[20], array[23], array[26], array[29], array[32], array[35]],  # Terceira linha
-            [array[36], array[38], array[40], 8, array[42]],  # Quarta linha
-            [array[37], array[39], array[41], 8, array[43]]   # Quinta linha
+            [3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3, 3], # Quarta linha
+            [array[36], array[38], array[40], 8, array[42]],  # Quinta linha
+            [array[37], array[39], array[41], 8, array[43]],   # Sexta linha
+            [3, 3, 3, 8, 8] # Setima Linha
         ]
-        main(BUTTON_LAYOUT)
+        NAMES = ["CHEFE MISSÃO", "C. AVANÇADO", "SEG. VOO", "SEG. SUPERFICIE", "ADOUR", "BEARN", "TELEMEDIDAS", 
+         "SVO.02", "LOGISTICA", "TRAJ.", "VISU SINTESE", "EMI C/IMPASSE", "TELEMEDIDAS", "BEARN", "ADOUR","",""]
+        main(BUTTON_LAYOUT, NAMES)
         #print(f"Array recebido: {array}")
 except KeyboardInterrupt:
     print("\nEncerrando servidor...")
