@@ -43,6 +43,21 @@ NAMES = ["CHEFE MISSÃO", "C. AVANÇADO", "SEG. VOO", "SEG. SUPERFICIE", "ADOUR"
 #pygame.display.set_caption("Painel de Luzes")
 #clock = pygame.time.Clock()
 
+def buttons_layout(array):
+    BUTTON_LAYOUT = []
+    # Primeira, segunda e terceira linha
+    for i in range(3):
+        BUTTON_LAYOUT.append([array[j] for j in range(i, 36, 3)])
+    # Quarta linha
+    BUTTON_LAYOUT.append([3] * 12)
+    # Quinta linha
+    BUTTON_LAYOUT.append([array[36], array[38], array[40], 8, array[42]])
+    # Sexta linha
+    BUTTON_LAYOUT.append([array[37], array[39], array[41], 8, array[43]])
+    # Sétima linha
+    BUTTON_LAYOUT.append([3, 3, 3, 8, 8])
+    return BUTTON_LAYOUT
+
 def draw_buttons(screen, layout, names):
     """Desenha os botões com base no layout."""
     y_start = 75 # Início da primeira linha no eixo Y
@@ -76,7 +91,7 @@ def draw_buttons(screen, layout, names):
                 pygame.draw.rect(screen, (0,0,0), (x, y, BUTTON_SIZE, BUTTON_SPACING), 2)
 
 
-def main(BUTTON_LAYOUT, NAMES):
+def main(BUTTON_LAYOUT):
     # Inicializa o pygame
     pygame.init()
     screen = pygame.display.set_mode((SCREEN_WIDTH, SCREEN_HEIGHT))
