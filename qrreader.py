@@ -1,8 +1,11 @@
 import cv2
+from cv2 import QRCodeDetector
 from pyzbar import pyzbar
+from qreader import QReader
+from qrdet import QRDetector
 import numpy as np
 
-#cap = cv2.VideoCapture(1)
+#cap = cv2.VideoCapture("Painel_3.mp4")
 
 def get_frame(cap):
     cap.set(cv2.CAP_PROP_FRAME_WIDTH, 1280)
@@ -17,9 +20,20 @@ def get_frame(cap):
 
 def read_qr_codes(frame):
     
-    qr_codes = pyzbar.decode(frame)
-    positions = {}
+    #qreader = QReader()
+    #decoded_qrs, detections = qreader.detect_and_decode(frame, return_detections = True)
+    #qr_positions ={}
     
+    #cont = 0
+    #for bbox_xyxy in detections:
+    #    data = decoded_qrs[cont]
+    #    x, y, w, h = bbox_xyxy['bbox_xyxy']
+    #    qr_positions[data] = ((x + w) // 2, (y + h) // 2)
+    #    cont+=1
+    #return qr_positions 
+    
+    qr_codes = pyzbar.decode(frame)
+    positions = {}        
     for qr_code in qr_codes:
         data = qr_code.data.decode('utf-8')
         x, y, w, h = qr_code.rect
@@ -34,8 +48,10 @@ def centralize_image(frame, positions):
         
         top_left = positions['top_left']
         bottom_left = positions['bottom_left']
+        #bottom_left = positions['bottom_right']
         top_right = positions['top_right']
         bottom_right = positions['bottom_right']
+        #bottom_right = positions['bottom_left']
         
         src = [top_left,bottom_left,top_right,bottom_right]
         src = np.float32(src)
@@ -111,8 +127,8 @@ def get_brightness(frame_centered):
     green_15 = frame_centered[589:617, 281:309] 
     # Sixteenth column
     red_16 = frame_centered[503:531, 483:511]
-    green_16 = frame_centered[588:616, 483:511] 
-
+    green_16 = frame_centered[588:616, 483:511]
+    
     # Get the Brightness
 
     ROI = [red_1,green_1,blue_1,red_2,green_2,blue_2,red_3,green_3,blue_3,red_4,green_4,blue_4,red_5,green_5,blue_5,red_6,green_6,blue_6,red_7,green_7,blue_7,red_8,green_8,blue_8,red_9,green_9,blue_9,red_10,green_10,blue_10]
@@ -235,28 +251,28 @@ def get_brightness(frame_centered):
 
     return frame_centered, on_off
 
-#while(True):
+while True:
     
     #_, frame = cap.read()
     
-    #frame = cv2.imread('PainelQR.jpg')
-    #frame = cv2.resize(frame, (1280, 720))
+    frame = cv2.imread('PainelQR.jpg')
+    frame = cv2.resize(frame, (1280, 720))
 
-    #if frame is None:
-    #    print("Cannot open the video cam")
-    #    break
+    if frame is None:
+        print("Cannot open the video cam")
+        break
     
-    #positions = read_qr_codes(frame)
+    positions = read_qr_codes(frame)
     
-    #frame_centered = centralize_image(frame, positions)
+    frame_centered = centralize_image(frame, positions)
 
-    #frame_bright, on_off = get_brightness(frame_centered)
+    frame_bright, on_off = get_brightness(frame_centered)
 
-    #cv2.imshow('QR_Reader', frame_bright)
+    cv2.imshow('QR_Reader', frame_bright)
     
-    #if cv2.waitKey(1) & 0xFF == ord('q'):
-        #break
+    if cv2.waitKey(1) & 0xFF == ord('q'):
+        break
     
 #cap.release()
-#cv2.destroyAllWindows() 
+cv2.destroyAllWindows() 
 # https://medium.com/@anandkushagra2898/image-brightness-calculator-9202128d7f42
